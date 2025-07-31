@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -67,7 +64,6 @@
     <link rel="prev" title="Some data processing recipes!" href="post.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,8 +79,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -92,6 +99,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -99,8 +107,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -116,8 +124,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -147,17 +154,21 @@
     
     
     <img src="../../_static/logo.png" class="logo__image only-light" alt="DeepLabCut - Home"/>
-    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="DeepLabCut - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="DeepLabCut - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -174,8 +185,6 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="../course.html">DeepLabCut Self-paced Course</a></li>
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul class="nav bd-sidenav">
@@ -198,7 +207,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DLC3 PyTorch Specific Docs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../pytorch/user_guide.html">DeepLabCut 3.0 - Pytorch User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pytorch/user_guide.html">DeepLabCut 3.0 - PyTorch User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pytorch/pytorch_config.html">The PyTorch Configuration file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pytorch/architectures.html">DeepLabCut 3.0 - PyTorch Model Architectures</a></li>
 </ul>
@@ -215,24 +224,31 @@
 <li class="toctree-l1"><a class="reference internal" href="../beginner-guides/Training-Evaluation.html">Neural Network training and evaluation in the GUI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../beginner-guides/video-analysis.html">Video Analysis with DeepLabCut</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hardware Tips</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Main Demo Notebooks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="TechHardware.html">Technical (Hardware) Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_DEMO_SuperAnimal.html">DeepLabCut SuperAnimal models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_DEMO_mouse_openfield.html">DeepLabCut on Single Mouse Data Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_3miceDemo.html">DeepLabCut MultiMouse Data Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_HumanPose_with_RTMPose.html">DeepLabCut RTMPose human pose estimation demo</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">DeepLabCut-Live!</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Notebooks For Your Data</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../deeplabcutlive.html">DeepLabCut-Live!</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">🦄 DeepLabCut Model Zoo</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../ModelZoo.html">The DeepLabCut Model Zoo!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="UsingModelZooPupil.html">Using ModelZoo models on your own datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MegaDetectorDLCLive.html">💚 MegaDetector+DeepLabCut 💜</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_YOURDATA_SuperAnimal.html">DeepLabCut Model Zoo: SuperAnimal models</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_YOURDATA_TrainNetwork_VideoAnalysis.html">DeepLabCut for your standard (single animal) projects!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_YOURDATA_maDLC_TrainNetwork_VideoAnalysis.html">DeepLabCut for your multi-animal projects!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Special Feature Demos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_transformer_reID.html">Demo: How to use our Pose Transformer for unsupervised identity tracking of animals</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_BUCTD_and_CTD_tracking.html">DeepLabCut - Tutorial for BUCTD models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/JUPYTER/Demo_3D_DeepLabCut.html">3D DeepLabCut Toolbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_DLC_ModelZoo.html">DeepLabCut Model Zoo user-contributed models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">🧑‍🍳 Cookbook (detailed helper guides)</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../convert_maDLC.html">How to convert a pre-2.2 project for use with DeepLabCut 2.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../convert_maDLC.html">How to convert a pre-2.2 project for use with DeepLabCut 2.2 or later</a></li>
 <li class="toctree-l1"><a class="reference internal" href="OtherData.html">How to use data labeled outside of DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="io.html">Input/output manipulations with DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn.html">Model training tips &amp; tricks</a></li>
@@ -250,6 +266,19 @@
 
 <li class="toctree-l1"><a class="reference internal" href="publishing_notebooks_into_the_DLC_main_cookbook.html">Publishing Notebooks into the Main DLC Cookbook</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hardware Tips</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="TechHardware.html">Technical (Hardware) Considerations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">DeepLabCut-Live!</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../deeplabcutlive.html">DeepLabCut-Live!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">🦄 DeepLabCut Model Zoo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ModelZoo.html">The DeepLabCut Model Zoo!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UsingModelZooPupil.html">Using ModelZoo models on your own datasets</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DeepLabCut Benchmarking</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../benchmark.html">DeepLabCut benchmark</a></li>
@@ -260,6 +289,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../MISSION_AND_VALUES.html">Mission and Values of DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">A development roadmap for DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Governance.html">Governance Model of DeepLabCut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">How to Contribute to DeepLabCut</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Citations for DeepLabCut</span></p>
 <ul class="nav bd-sidenav">
@@ -272,14 +302,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -423,16 +448,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -473,10 +506,11 @@
 <h1>Automate training and video analysis: Batch Processing<a class="headerlink" href="#automate-training-and-video-analysis-batch-processing" title="Link to this heading">#</a></h1>
 <section id="tips-for-working-with-dlc-networks">
 <h2>Tips for working with DLC networks:<a class="headerlink" href="#tips-for-working-with-dlc-networks" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Now you have a DLC network and are happy with the performance on selected videos, you may want to run it on all your videos without hassle. If all your videos are in one folder this is easy, simply pass the foldername to <code class="docutils literal notranslate"><span class="pre">deeplabcut.analyze_videos(config,[folder])</span></code> and you are fine. What if the videos are scattered?</p></li>
-</ul>
-<p>You could create a simply script that runs over all your video folders with the network of choice. Your “key” to this network is your config.yaml file.</p>
+<p>Now you have a DLC network and are happy with the performance on selected videos, you may want to run it on all your
+videos without hassle. If all your videos are in one folder this is easy, simply pass the foldername to
+<code class="docutils literal notranslate"><span class="pre">deeplabcut.analyze_videos(config,[folder])</span></code> and you are fine. What if the videos are scattered?</p>
+<p>You can create a simple script that runs over all your video folders with the network of choice. Your “key” to this
+network is your config.yaml file.</p>
 <p><img alt="" src="https://static1.squarespace.com/static/57f6d51c9f74566f55ecf271/t/5ccc5abe0d9297405a428522/1556896461304/howtouseDLC-01.png?format=1000w" /></p>
 <p>Here is a script that you can use to run video analysis over all the folders.</p>
 <p><a class="github reference external" href="https://github.com/DeepLabCut/DLCutils/tree/master/SCALE_YOUR_ANALYSIS">DeepLabCut/DLCutils</a> (see below as well)</p>
@@ -496,18 +530,18 @@
 
 <span class="k">def</span><span class="w"> </span><span class="nf">getsubfolders</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; returns list of subfolders &#39;&#39;&#39;</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="n">p</span><span class="p">))]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">p</span><span class="p">))]</span>
 
-<span class="n">project</span><span class="o">=</span><span class="s1">&#39;ComplexWheelD3-12-Fumi-2019-01-28&#39;</span>
+<span class="n">project</span> <span class="o">=</span> <span class="s2">&quot;ComplexWheelD3-12-Fumi-2019-01-28&quot;</span>
 
-<span class="n">shuffle</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">shuffle</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;/home/alex/DLC-workshopRowland&#39;</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;/home/alex/DLC-workshopRowland&quot;</span>
 
-<span class="n">projectpath</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span><span class="n">project</span><span class="p">)</span>
-<span class="n">config</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">projectpath</span><span class="p">,</span><span class="s1">&#39;config.yaml&#39;</span><span class="p">)</span>
+<span class="n">projectpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">project</span><span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">projectpath</span><span class="p">,</span> <span class="s2">&quot;config.yaml&quot;</span><span class="p">)</span>
 
-<span class="n">basepath</span><span class="o">=</span><span class="s1">&#39;/home/alex/BenchmarkingExperimentsJan2019&#39;</span> <span class="c1">#data&#39;</span>
+<span class="n">basepath</span> <span class="o">=</span> <span class="s2">&quot;/home/alex/BenchmarkingExperimentsJan2019&quot;</span>
 
 <span class="sd">&#39;&#39;&#39;</span>
 
@@ -520,13 +554,13 @@
 
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">subfolders</span><span class="o">=</span><span class="n">getsubfolders</span><span class="p">(</span><span class="n">basepath</span><span class="p">)</span>
+<span class="n">subfolders</span> <span class="o">=</span> <span class="n">getsubfolders</span><span class="p">(</span><span class="n">basepath</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">subfolder</span> <span class="ow">in</span> <span class="n">subfolders</span><span class="p">:</span> <span class="c1">#this would be January, February etc. in the upper example</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting analyze data in:&quot;</span><span class="p">,</span> <span class="n">subfolder</span><span class="p">)</span>
-    <span class="n">subsubfolders</span><span class="o">=</span><span class="n">getsubfolders</span><span class="p">(</span><span class="n">subfolder</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting analyze data in: &quot;</span><span class="p">,</span> <span class="n">subfolder</span><span class="p">)</span>
+    <span class="n">subsubfolders</span> <span class="o">=</span> <span class="n">getsubfolders</span><span class="p">(</span><span class="n">subfolder</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">subsubfolder</span> <span class="ow">in</span> <span class="n">subsubfolders</span><span class="p">:</span> <span class="c1">#this would be Febuary1, etc. in the upper example...</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting analyze data in:&quot;</span><span class="p">,</span> <span class="n">subsubfolder</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">vtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;.mp4&#39;</span><span class="p">,</span><span class="s1">&#39;.m4v&#39;</span><span class="p">,</span><span class="s1">&#39;.mpg&#39;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting analyze data in: &quot;</span><span class="p">,</span> <span class="n">subsubfolder</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">vtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.mp4&quot;</span><span class="p">,</span> <span class="s2">&quot;.m4v&quot;</span><span class="p">,</span> <span class="s2">&quot;.mpg&quot;</span><span class="p">]:</span>
             <span class="n">deeplabcut</span><span class="o">.</span><span class="n">analyze_videos</span><span class="p">(</span><span class="n">config</span><span class="p">,[</span><span class="n">subsubfolder</span><span class="p">],</span><span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span><span class="n">videotype</span><span class="o">=</span><span class="n">vtype</span><span class="p">,</span><span class="n">save_as_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 </pre></div>
@@ -553,25 +587,25 @@ import os
 
 import deeplabcut
 
-Maxiter=int(1.5*10**5)
+epochs = 200
 
 model=int(sys.argv[1])
 
-Projects=[[&#39;project1-phoenix-2019-01-28&#39;],[&#39;ComplexWheelD3-12-Fumi-2019-01-28&#39;, &#39;maze-ariel-2019-01-28&#39;], [&#39;TBI-BvA-2019-01-28&#39;,&#39;group-eli-2019-01-28&#39;]]
+Projects=[[&quot;project1-phoenix-2019-01-28&quot;], [&quot;ComplexWheelD3-12-Fumi-2019-01-28&quot;, &quot;maze-ariel-2019-01-28&quot;], [&quot;TBI-BvA-2019-01-28&quot;, &quot;group-eli-2019-01-28&quot;]]
 
 shuffle=1
 
-prefix=&#39;/home/alex/DLC-workshopRowland&#39;
+prefix = &quot;/home/alex/DLC-workshopRowland&quot;
 
 for project in Projects[model]:
-    projectpath=os.path.join(prefix,project)
-    config=os.path.join(projectpath,&#39;config.yaml&#39;)
+    projectpath = os.path.join(prefix, project)
+    config = os.path.join(projectpath, &quot;config.yaml&quot;)
 
-    cfg=deeplabcut.auxiliaryfunctions.read_config(config)
-    previous_path=cfg[&#39;project_path&#39;]
+    cfg = deeplabcut.auxiliaryfunctions.read_config(config)
+    previous_path = cfg[&quot;project_path&quot;]
 
-    cfg[&#39;project_path&#39;]=projectpath
-    deeplabcut.auxiliaryfunctions.write_config(config,cfg)
+    cfg[&quot;project_path&quot;]=projectpath
+    deeplabcut.auxiliaryfunctions.write_config(config, cfg)
 
     print(&quot;This is the name of the script: &quot;, sys.argv[0])
     print(&quot;Shuffle: &quot;, shuffle)
@@ -579,24 +613,20 @@ for project in Projects[model]:
 
     deeplabcut.create_training_dataset(config, Shuffles=[shuffle])
 
-    deeplabcut.train_network(config, shuffle=shuffle, max_snapshots_to_keep=5, maxiters=Maxiter)
+    deeplabcut.train_network(config, shuffle=shuffle, max_snapshots_to_keep=5, epochs=epochs)
     print(&quot;Evaluating...&quot;)
-    deeplabcut.evaluate_network(config, Shuffles=[shuffle],plotting=True)
+    deeplabcut.evaluate_network(config, Shuffles=[shuffle], plotting=True)
 
     print(&quot;Analyzing videos..., switching to last snapshot...&quot;)
-    #cfg=deeplabcut.auxiliaryfunctions.read_config(config)
-    #cfg[&#39;snapshotindex&#39;]=-1
-    #deeplabcut.auxiliaryfunctions.write_config(config,cfg)
-
     for vtype in [&#39;.mp4&#39;,&#39;.m4v&#39;,&#39;.mpg&#39;]:
         try:
-            deeplabcut.analyze_videos(config,[str(os.path.join(projectpath,&#39;videos&#39;))],shuffle=shuffle,videotype=vtype,save_as_csv=True)
+            deeplabcut.analyze_videos(config, [str(os.path.join(projectpath, &quot;videos&quot;))], shuffle=shuffle, videotype=vtype, save_as_csv=True)
         except:
             pass
 
     print(&quot;DONE WITH &quot;, project,&quot; resetting to original path&quot;)
-    cfg[&#39;project_path&#39;]=previous_path
-    deeplabcut.auxiliaryfunctions.write_config(config,cfg)
+    cfg[&quot;project_path&quot;] = previous_path
+    deeplabcut.auxiliaryfunctions.write_config(config, cfg)
     ```
 </pre></div>
 </div>
@@ -658,8 +688,7 @@ for project in Projects[model]:
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -722,8 +751,8 @@ By The DeepLabCut Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

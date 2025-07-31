@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DeepLabCut 3.0 - Pytorch User Guide &#8212; DeepLabCut</title>
+    <title>DeepLabCut 3.0 - PyTorch User Guide &#8212; DeepLabCut</title>
   
   
   
@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -67,7 +64,6 @@
     <link rel="prev" title="napari labeling GUI" href="../gui/napari_GUI.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,8 +79,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -92,6 +99,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -99,8 +107,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -116,8 +124,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -147,17 +154,21 @@
     
     
     <img src="../../_static/logo.png" class="logo__image only-light" alt="DeepLabCut - Home"/>
-    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="DeepLabCut - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="DeepLabCut - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -174,8 +185,6 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="../course.html">DeepLabCut Self-paced Course</a></li>
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul class="nav bd-sidenav">
@@ -198,7 +207,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DLC3 PyTorch Specific Docs</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">DeepLabCut 3.0 - Pytorch User Guide</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">DeepLabCut 3.0 - PyTorch User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytorch_config.html">The PyTorch Configuration file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="architectures.html">DeepLabCut 3.0 - PyTorch Model Architectures</a></li>
 </ul>
@@ -215,24 +224,31 @@
 <li class="toctree-l1"><a class="reference internal" href="../beginner-guides/Training-Evaluation.html">Neural Network training and evaluation in the GUI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../beginner-guides/video-analysis.html">Video Analysis with DeepLabCut</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hardware Tips</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Main Demo Notebooks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../recipes/TechHardware.html">Technical (Hardware) Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_DEMO_SuperAnimal.html">DeepLabCut SuperAnimal models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_DEMO_mouse_openfield.html">DeepLabCut on Single Mouse Data Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_3miceDemo.html">DeepLabCut MultiMouse Data Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_HumanPose_with_RTMPose.html">DeepLabCut RTMPose human pose estimation demo</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">DeepLabCut-Live!</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Notebooks For Your Data</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../deeplabcutlive.html">DeepLabCut-Live!</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">🦄 DeepLabCut Model Zoo</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../ModelZoo.html">The DeepLabCut Model Zoo!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../recipes/UsingModelZooPupil.html">Using ModelZoo models on your own datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../recipes/MegaDetectorDLCLive.html">💚 MegaDetector+DeepLabCut 💜</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_YOURDATA_SuperAnimal.html">DeepLabCut Model Zoo: SuperAnimal models</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_YOURDATA_TrainNetwork_VideoAnalysis.html">DeepLabCut for your standard (single animal) projects!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_YOURDATA_maDLC_TrainNetwork_VideoAnalysis.html">DeepLabCut for your multi-animal projects!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">🚀 Special Feature Demos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_transformer_reID.html">Demo: How to use our Pose Transformer for unsupervised identity tracking of animals</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_BUCTD_and_CTD_tracking.html">DeepLabCut - Tutorial for BUCTD models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/JUPYTER/Demo_3D_DeepLabCut.html">3D DeepLabCut Toolbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/COLAB/COLAB_DLC_ModelZoo.html">DeepLabCut Model Zoo user-contributed models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">🧑‍🍳 Cookbook (detailed helper guides)</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../convert_maDLC.html">How to convert a pre-2.2 project for use with DeepLabCut 2.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../convert_maDLC.html">How to convert a pre-2.2 project for use with DeepLabCut 2.2 or later</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../recipes/OtherData.html">How to use data labeled outside of DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../recipes/io.html">Input/output manipulations with DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../recipes/nn.html">Model training tips &amp; tricks</a></li>
@@ -250,6 +266,19 @@
 
 <li class="toctree-l1"><a class="reference internal" href="../recipes/publishing_notebooks_into_the_DLC_main_cookbook.html">Publishing Notebooks into the Main DLC Cookbook</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hardware Tips</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../recipes/TechHardware.html">Technical (Hardware) Considerations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">DeepLabCut-Live!</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../deeplabcutlive.html">DeepLabCut-Live!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">🦄 DeepLabCut Model Zoo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ModelZoo.html">The DeepLabCut Model Zoo!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes/UsingModelZooPupil.html">Using ModelZoo models on your own datasets</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DeepLabCut Benchmarking</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../benchmark.html">DeepLabCut benchmark</a></li>
@@ -260,6 +289,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../MISSION_AND_VALUES.html">Mission and Values of DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">A development roadmap for DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Governance.html">Governance Model of DeepLabCut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">How to Contribute to DeepLabCut</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Citations for DeepLabCut</span></p>
 <ul class="nav bd-sidenav">
@@ -272,14 +302,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -423,16 +448,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -446,7 +479,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>DeepLabCut 3.0 - Pytorch User Guide</h1>
+    <h1>DeepLabCut 3.0 - PyTorch User Guide</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -459,6 +492,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-deeplabcut-3-0">Using DeepLabCut 3.0</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-gui">Using the GUI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-guide-standard-api">Quick guide (standard API)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-changes">Major changes</a><ul class="nav section-nav flex-column">
@@ -482,41 +516,37 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="deeplabcut-3-0-pytorch-user-guide">
-<span id="dlc3-user-guide"></span><h1>DeepLabCut 3.0 - Pytorch User Guide<a class="headerlink" href="#deeplabcut-3-0-pytorch-user-guide" title="Link to this heading">#</a></h1>
+<span id="dlc3-user-guide"></span><h1>DeepLabCut 3.0 - PyTorch User Guide<a class="headerlink" href="#deeplabcut-3-0-pytorch-user-guide" title="Link to this heading">#</a></h1>
 <section id="using-deeplabcut-3-0">
 <h2>Using DeepLabCut 3.0<a class="headerlink" href="#using-deeplabcut-3-0" title="Link to this heading">#</a></h2>
 <p><strong>DeepLabCut 3.0 keeps the same high-level API that you know, but has a full new PyTorch backend.
-Moreover, it is a rewrite that more developer friendly, more powerful, and built for modern deep
+Moreover, it is a rewrite that is more developer friendly, more powerful, and built for modern deep
 learning-based computer vision applications.</strong></p>
-<p><strong>NOTE</strong>🔥: We suggest that if you’re just starting with DeepLabCut you start with the PyTorch backend.
-You will easily know which “engine” you are using by looking at the main <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file, or top right corner in the GUI.
-If you have DeepLabCut projects in TensorFlow, we’ve got you covered too: you can seamlessly switch to train your already labeled data
-by simply switching the engine (and thereby also compare performance). In short, expect a boost 🔥.</p>
-<p>In short, PyTorch models can be trained in any DeepLabCut project. If you have a project already made,  simply add a new key to your
-project <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file specifying <code class="docutils literal notranslate"><span class="pre">engine:</span> <span class="pre">pytorch</span></code>. Then any new training dataset
-that will be created will be a PyTorch model (see
-<a class="reference internal" href="#Creating-Shuffles-and-Model-Configuration"><span class="xref myst">Creating Shuffles and Model Configuration</span></a>)
-to learn more about training PyTorch models. To train Tensorflow models again, you can
-set <code class="docutils literal notranslate"><span class="pre">engine:</span> <span class="pre">tensorflow</span></code>.</p>
+<p><strong>NOTE</strong>🔥: We suggest that if you’re just starting with DeepLabCut you start with the
+PyTorch backend. You will easily know which “engine” you are using by looking at the
+main <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file, or top right corner in the GUI. If you have DeepLabCut projects
+in TensorFlow, we’ve got you covered too: you can seamlessly switch to train your
+already labeled data by simply switching the engine (and thereby also compare
+performance). In short, expect a boost 🔥.</p>
+<p>In short, PyTorch models can be trained in any DeepLabCut project. If you have a project
+already made,  simply add a new key to your project <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file specifying
+<code class="docutils literal notranslate"><span class="pre">engine:</span> <span class="pre">pytorch</span></code>. Then any new training dataset that will be created will be a PyTorch
+model (see <a class="reference internal" href="#Creating-Shuffles-and-Model-Configuration"><span class="xref myst">Creating Shuffles and Model Configuration</span></a>) to learn more about training PyTorch
+models. To train Tensorflow models again, you can set <code class="docutils literal notranslate"><span class="pre">engine:</span> <span class="pre">tensorflow</span></code>.</p>
 <section id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h3>
-<p>During the alpha phase, you can use the <code class="docutils literal notranslate"><span class="pre">yaml</span></code> we provide, or create a new <code class="docutils literal notranslate"><span class="pre">env</span></code>.</p>
-<ul class="simple">
-<li><p>If you are a beginner user, <a class="reference external" href="https://deeplabcut.github.io/DeepLabCut/docs/beginner-guides/beginners-guide.html">please see these docs!</a></p></li>
-<li><p>If you are an advanced user, here is a quick start. <a class="reference external" href="https://pytorch.org/get-started/locally/">“Install PyTorch”</a>, then:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pytables</span><span class="o">==</span><span class="mf">3.8.0</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">DeepLabCut</span><span class="o">/</span><span class="n">DeepLabCut</span><span class="o">.</span><span class="n">git</span><span class="nd">@pytorch_dlc</span><span class="c1">#egg=deeplabcut[gui,modelzoo,wandb]</span>
-</pre></div>
-</div>
+<p>To see the DeepLabCut 3.0 installation guide, check the <a class="reference internal" href="../installation.html#how-to-install"><span class="std std-ref">installation docs</span></a>.</p>
 </section>
 <section id="using-the-gui">
 <h3>Using the GUI<a class="headerlink" href="#using-the-gui" title="Link to this heading">#</a></h3>
-<p>You can use the GUI to train DeepLabCut projects. However, you cannot switch between
-PyTorch and Tensorflow models while using the GUI. If you have set your engine to
-<code class="docutils literal notranslate"><span class="pre">pytorch</span></code>, then the GUI will only offer the creation of PyTorch shuffles.</p>
-<p>You can create <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code> shuffles and train them again by setting the
-<code class="docutils literal notranslate"><span class="pre">engine:</span> <span class="pre">tensorflow</span></code> in the top right corner of the GUI.</p>
+<p>You can use the GUI to train DeepLabCut projects. You can switch between the PyTorch
+and TensorFlow engine through the drop-down menu in the top right corner.</p>
+</section>
+<section id="quick-guide-standard-api">
+<h3>Quick guide (standard API)<a class="headerlink" href="#quick-guide-standard-api" title="Link to this heading">#</a></h3>
+<p>The standard use of DLC does not change (via the high-level API), as you can see in the standard guide: for <a class="reference external" href="https://deeplabcut.github.io/DeepLabCut/docs/standardDeepLabCut_UserGuide">single</a> and <a class="reference external" href="https://deeplabcut.github.io/DeepLabCut/docs/maDLC_UserGuide">multiple individuals</a>.</p>
+<p>Also check out several COLAB notebooks on how you can use the code.</p>
+<p>For the</p>
 </section>
 </section>
 <section id="major-changes">
@@ -541,7 +571,7 @@ size 1 (or 32 iterations with batch size 2, 16 with batch size 4, etc.).</p></li
 DeepLabCut 3.0 as you did for Tensorflow models (<code class="docutils literal notranslate"><span class="pre">deeplabcut.create_training_dataset</span></code>
 and <code class="docutils literal notranslate"><span class="pre">deeplabcut.create_training_model_comparison</span></code>).</p>
 <p>More information about the different PyTorch model architectures available in DeepLabCut
-is available <a class="reference internal" href="pytorch_config.html#dlc3-pytorch-config"><span class="std std-ref">here</span></a>. You can see a list of supported
+is available <a class="reference internal" href="architectures.html"><span class="doc std std-doc">here</span></a>. You can see a list of supported
 architectures/variants by using:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">deeplabcut.pose_estimation_pytorch</span><span class="w"> </span><span class="kn">import</span> <span class="n">available_models</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">available_models</span><span class="p">())</span>
@@ -564,7 +594,7 @@ parameters are not valid for the DLC 3.0 PyTorch API.</p>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">train_network</span></code></p></td>
 <td class="text-center"><p>🟢</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">keepdeconvweights</span></code></p></td>
+<td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">maxiters</span></code>, <code class="docutils literal notranslate"><span class="pre">saveiters</span></code>, <code class="docutils literal notranslate"><span class="pre">allow_growth</span></code>, <code class="docutils literal notranslate"><span class="pre">autotune</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">return_train_network_path</span></code></p></td>
@@ -574,7 +604,7 @@ parameters are not valid for the DLC 3.0 PyTorch API.</p>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">evaluate_network</span></code></p></td>
 <td class="text-center"><p>🟢</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">comparisonbodyparts</span></code>, <code class="docutils literal notranslate"><span class="pre">rescale</span></code>, <code class="docutils literal notranslate"><span class="pre">per_keypoint_evaluation</span></code></p></td>
+<td><p></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">return_evaluate_network_data</span></code></p></td>
@@ -583,22 +613,22 @@ parameters are not valid for the DLC 3.0 PyTorch API.</p>
 <td><p><code class="docutils literal notranslate"><span class="pre">TFGPUinference</span></code>, <code class="docutils literal notranslate"><span class="pre">allow_growth</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">analyze_videos</span></code></p></td>
-<td class="text-center"><p>🟢</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">in_random_order</span></code>, <code class="docutils literal notranslate"><span class="pre">dynamic</span></code>, <code class="docutils literal notranslate"><span class="pre">n_tracks</span></code>, <code class="docutils literal notranslate"><span class="pre">calibrate</span></code></p></td>
+<td class="text-center"><p>🟠</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">greedy</span></code>, <code class="docutils literal notranslate"><span class="pre">calibrate</span></code>, <code class="docutils literal notranslate"><span class="pre">window_size</span></code></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">create_tracking_dataset</span></code></p></td>
-<td class="text-center"><p>🔴</p></td>
+<td class="text-center"><p>🟢</p></td>
 <td><p></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">analyze_time_lapse_frames</span></code></p></td>
-<td class="text-center"><p>🟠</p></td>
+<td class="text-center"><p>🟢</p></td>
 <td><p>the name has changed to  <code class="docutils literal notranslate"><span class="pre">analyze_images</span></code> to better reflect what it actually does (no video needed)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">convert_detections2tracklets</span></code></p></td>
-<td class="text-center"><p>🟢</p></td>
+<td class="text-center"><p>🟠</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">greedy</span></code>, <code class="docutils literal notranslate"><span class="pre">calibrate</span></code>, <code class="docutils literal notranslate"><span class="pre">window_size</span></code></p></td>
 <td><p></p></td>
 </tr>
@@ -694,8 +724,7 @@ parameters are not valid for the DLC 3.0 PyTorch API.</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -707,6 +736,7 @@ parameters are not valid for the DLC 3.0 PyTorch API.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-deeplabcut-3-0">Using DeepLabCut 3.0</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-gui">Using the GUI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-guide-standard-api">Quick guide (standard API)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-changes">Major changes</a><ul class="nav section-nav flex-column">
@@ -770,8 +800,8 @@ By The DeepLabCut Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
